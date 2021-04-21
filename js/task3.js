@@ -16,21 +16,12 @@ const images = [
   },
 ]
 
+const makeImageEl = (element) => {
+  const { url, alt } = element
+  return imagesEl.insertAdjacentHTML("beforeend", `<li><img src="${url}" alt="${alt}"></li>`)
+}
+
 const imagesEl = document.querySelector("#gallery")
-imagesEl.classList.add("list-images")
-const elements = images.map((element) => {
-  const elem = document.createElement("img")
-  const item = document.createElement("li")
-  item.appendChild(elem)
-  elem.src = element.url
-  elem.alt = element.alt
-  elem.width = 500
-  elem.height = 300
+const makeImagesEl = images.map(makeImageEl)
 
-  console.log(item)
-  return item
-})
-
-imagesEl.append(...elements)
-
-insertAdjacentHTML
+imagesEl.insertAdjacentHTML("beforeend", makeImagesEl)
